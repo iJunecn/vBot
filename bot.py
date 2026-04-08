@@ -125,6 +125,7 @@ class vBotClient(botpy.Client):
 
 【其他】
 📌 帮助/help - 显示本帮助信息
+"""
     
     async def query_mc_servers(self) -> str:
         """查询所有Minecraft服务器状态"""
