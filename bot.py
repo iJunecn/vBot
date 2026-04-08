@@ -17,8 +17,32 @@ from botpy.ext.cog_yaml import read
 
 from minecraft_query import MinecraftServerQuery
 
+
+def load_dotenv_file(file_path: str) -> None:
+    """从 .env 文件加载环境变量。"""
+    if not os.path.exists(file_path):
+        return
+
+    with open(file_path, encoding='utf-8') as env_file:
+        for raw_line in env_file:
+            line = raw_line.strip()
+            if not line or line.startswith('#') or '=' not in line:
+                continue
+
+            key, value = line.split('=', 1)
+            key = key.strip()
+            value = value.strip().strip('"').strip("'")
+
+            if key and key not in os.environ:
+                os.environ[key] = value
+
+
+# 读取环境变量和配置
+project_dir = os.path.dirname(__file__)
+load_dotenv_file(os.path.join(project_dir, ".env"))
+
 # 读取配置
-config_path = os.path.join(os.path.dirname(__file__), "config.yaml")
+config_path = os.path.join(project_dir, "config.yaml")
 config = read(config_path)
 
 # 日志
@@ -33,8 +57,8 @@ class vBotClient(botpy.Client):
         
         # 初始化Minecraft查询器
         self.mc_query = MinecraftServerQuery(
-            base_url=config.get('uapi_base_url', 'https://uapis.cn'),
-            token=config.get('uapi_token')
+            base_url=os.getenv('UAPI_BASE_URL', 'https://uapis.cn'),
+            token=os.getenv('UAPI_TOKEN')
         )
         
     async def on_ready(self):
@@ -153,6 +177,14 @@ class vBotClient(botpy.Client):
 
 def main():
     """主函数"""
+    appid = os.getenv('APPID') or config.get('appid')
+    secret = os.getenv('SECRET') or config.get('secret')
+
+    if not appid or not secret:
+        print("错误: 缺少 APPID 或 SECRET 环境变量")
+        print("请先复制 .env.example 为 .env 并填写配置")
+        sys.exit(1)
+
     # 设置意图
     intents = botpy.Intents(
         public_messages=True,      # 群消息
@@ -165,8 +197,8 @@ def main():
     
     # 运行机器人 (run是阻塞方法，内部处理了事件循环)
     client.run(
-        appid=config['appid'],
-        secret=config['secret']
+        appid=appid,
+        secret=secret
     )
 
 

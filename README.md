@@ -10,18 +10,25 @@
 
 ## 配置说明
 
-编辑 `config.yaml` 文件：
+复制 `.env.example` 为 `.env` 并填写你的机器人和 UAPI 配置，然后编辑 `config.yaml` 文件：
+
+```bash
+copy .env.example .env
+```
+
+`.env` 示例：
+
+```env
+APPID=你的QQ机器人APPID
+SECRET=你的QQ机器人Secret
+TOKEN=你的QQ机器人Token
+UAPI_TOKEN=你的UAPI_TOKEN
+UAPI_BASE_URL=https://uapis.cn
+```
+
+`config.yaml` 只保留 Minecraft 服务器列表：
 
 ```yaml
-# QQ机器人配置（已预填）
-appid: "102809514"
-secret: "Ven6Pj3Oj5RoKrPxW5fFqR3fIvZDsXDt"
-token: "S6aq0qzozPtJXgHYN7mPXb4ZE8cjMdkb"
-
-# UAPI配置（已预填）
-uapi_token: "uapi-kbxpfcmkWEn91QEYN2-YCylNB70AiDLyIq0ie1FD"
-uapi_base_url: "https://uapis.cn"
-
 # Minecraft服务器列表
 minecraft_servers:
   - name: "mc.ustb.world"
@@ -59,6 +66,7 @@ python bot.py
 vBot/
 ├── bot.py              # 主程序
 ├── minecraft_query.py  # Minecraft服务器查询模块
+├── .env.example        # 环境变量示例
 ├── config.yaml         # 配置文件
 ├── requirements.txt    # 依赖列表
 └── README.md          # 本文档

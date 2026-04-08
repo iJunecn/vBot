@@ -1,13 +1,6 @@
-# QQ机器人配置
-appid: "102809514"
-secret: "Ven6Pj3Oj5RoKrPxW5fFqR3fIvZDsXDt"
-token: "S6aq0qzozPtJXgHYN7mPXb4ZE8cjMdkb"
-
-# UAPI配置
-uapi_token: "uapi-kbxpfcmkWEn91QEYN2Y-CYlNB70AiDLyIq0ie1FD"
-uapi_base_url: "https://uapis.cn"
-
 # Minecraft服务器列表
+# 机器人账号和密钥请放到 .env 中
+
 minecraft_servers:
   - name: "mc.ustb.world"
     display_name: "USTB主服务器"
