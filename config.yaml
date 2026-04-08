@@ -7,9 +7,6 @@ token: "S6aq0qzozPtJXgHYN7mPXb4ZE8cjMdkb"
 uapi_token: "uapi-kbxpfcmkWEn91QEYN2Y-CYlNB70AiDLyIq0ie1FD"
 uapi_base_url: "https://uapis.cn"
 
-# GUGUBot配置
-gugubot_port: 8000
-
 # Minecraft服务器列表
 minecraft_servers:
   - name: "mc.ustb.world"
