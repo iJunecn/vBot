@@ -119,7 +119,7 @@ class vBotClient(botpy.Client):
         
         支持的命令:
         - 帮助/help: 显示帮助信息
-        - 状态/status: 查询Minecraft服务器状态
+        - 服务器/server: 查询Minecraft服务器状态
         """
         content_lower = content.lower()
         
@@ -128,7 +128,7 @@ class vBotClient(botpy.Client):
             return self.get_help_text()
         
         # 服务器状态查询
-        if content_lower in ['状态', 'status', '服务器状态', 'mc', 'minecraft']:
+        if content_lower in ['服务器', 'server', '服务器状态', 'mc', 'minecraft']:
             return await self.query_mc_servers()
         
         # 未知命令，返回帮助提示
@@ -142,7 +142,7 @@ class vBotClient(botpy.Client):
         return """🤖 vBot 使用帮助
 
 【Minecraft服务器查询】
-📌 状态/status - 查询服务器在线状态
+📌 服务器/server - 查询服务器在线状态
 
 【其他】
 📌 帮助/help - 显示本帮助信息
@@ -159,7 +159,7 @@ class vBotClient(botpy.Client):
         results = await self.mc_query.query_multiple_servers(server_addresses)
         
         lines = ["🎮 Minecraft服务器状态"]
-        lines.append("=" * 30)
+        lines.append("=" * 27)
         
         for server_config in servers:
             addr = server_config['name']
