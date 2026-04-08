@@ -26,7 +26,7 @@ class MinecraftServerQuery:
         """
         try:
             # uapi sdk是同步的，在异步环境中使用run_in_executor
-            loop = asyncio.get_event_loop()
+            loop = asyncio.get_running_loop()
             result = await loop.run_in_executor(
                 None, 
                 lambda: self.client.game.get_game_minecraft_serverstatus(server=server_address)
