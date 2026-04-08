@@ -122,7 +122,7 @@ class vBotClient(botpy.Client):
         支持的命令:
         - /help: 显示帮助信息
         - /server: 查询Minecraft服务器状态
-        - /about: 介绍本群Bot
+        - /about: 介绍本群
         """
         content_lower = content.lower()
         
@@ -153,7 +153,7 @@ class vBotClient(botpy.Client):
 
 【其他】
     📌 /help - 显示本帮助信息
-    📌 /about - 查看机器人介绍
+    📌 /about - 查看本群介绍
 """
 
     def get_about_text(self) -> str:
