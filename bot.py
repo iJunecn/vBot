@@ -72,7 +72,8 @@ class vBotClient(botpy.Client):
         # 处理命令
         response = await self.process_command(content, message)
         if response:
-            mention_prefix = f"<@{message.author.member_openid}>\n" if getattr(message.author, "member_openid", None) else ""
+            mention_name = getattr(getattr(message, "member", None), "nick", None) or ""
+            mention_prefix = f"@{mention_name}\n" if mention_name else ""
             await message._api.post_group_message(
                 group_openid=message.group_openid,
                 msg_type=0,
