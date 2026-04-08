@@ -3,6 +3,6 @@
 
 minecraft_servers:
   - name: "mc.ustb.world"
-    display_name: "USTB主服务器"
+    display_name: "USTB 主服务器"
   - name: "mod.ustb.world"
-    display_name: "USTB模组服务器"
+    display_name: "USTB 模组服务器"
