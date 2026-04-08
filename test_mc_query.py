@@ -24,10 +24,7 @@ async def test_query():
     config = read(config_path)
     
     # 创建查询器
-    query = MinecraftServerQuery(
-        base_url=config.get('uapi_base_url', 'https://uapis.cn'),
-        token=config.get('uapi_token')
-    )
+    query = MinecraftServerQuery()
     
     # 测试单个服务器查询
     servers = config.get('minecraft_servers', [])
@@ -59,11 +56,4 @@ async def test_query():
 
 
 if __name__ == "__main__":
-    try:
-        import uapi
-    except ImportError:
-        print("错误: 缺少 uapi-sdk-python 依赖")
-        print("请运行: pip install uapi-sdk-python")
-        sys.exit(1)
-    
     asyncio.run(test_query())

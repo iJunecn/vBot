@@ -56,10 +56,7 @@ class vBotClient(botpy.Client):
         super().__init__(intents=intents, **kwargs)
         
         # 初始化Minecraft查询器
-        self.mc_query = MinecraftServerQuery(
-            base_url=os.getenv('UAPI_BASE_URL', 'https://uapis.cn'),
-            token=os.getenv('UAPI_TOKEN')
-        )
+        self.mc_query = MinecraftServerQuery()
         
     async def on_ready(self):
         """机器人准备就绪"""
@@ -203,10 +200,4 @@ def main():
 
 
 if __name__ == "__main__":
-    try:
-        import uapi
-    except ImportError:
-        print("错误: 缺少 uapi-sdk-python 依赖")
-        print("请运行: pip install uapi-sdk-python")
-        sys.exit(1)
     main()

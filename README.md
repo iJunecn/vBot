@@ -10,7 +10,7 @@
 
 ## 配置说明
 
-复制 `.env.example` 为 `.env` 并填写你的机器人和 UAPI 配置，然后编辑 `config.yaml` 文件：
+复制 `.env.example` 为 `.env` 并填写你的机器人配置，然后编辑 `config.yaml` 文件：
 
 ```bash
 copy .env.example .env
@@ -22,8 +22,6 @@ copy .env.example .env
 APPID=你的QQ机器人APPID
 SECRET=你的QQ机器人Secret
 TOKEN=你的QQ机器人Token
-UAPI_TOKEN=你的UAPI_TOKEN
-UAPI_BASE_URL=https://uapis.cn
 ```
 
 `config.yaml` 只保留 Minecraft 服务器列表：
