@@ -55,8 +55,8 @@ python bot.py
 
 | 命令 | 说明 |
 |------|------|
-| 帮助 / help | 显示帮助信息 |
-| 状态 / status | 查询Minecraft服务器状态 |
+| /help | 显示帮助信息 |
+| /server | 查询Minecraft服务器状态 |
 
 ## 目录结构
 

@@ -119,22 +119,22 @@ class vBotClient(botpy.Client):
         处理用户命令
         
         支持的命令:
-        - 帮助/help: 显示帮助信息
-        - 服务器/server: 查询Minecraft服务器状态
+        - /help: 显示帮助信息
+        - /server: 查询Minecraft服务器状态
         """
         content_lower = content.lower()
         
         # 帮助命令
-        if content_lower in ['帮助', 'help', '菜单', 'menu']:
+        if content_lower == '/help':
             return self.get_help_text()
         
         # 服务器状态查询
-        if content_lower in ['服务器', 'server', '服务器状态', 'mc', 'minecraft']:
+        if content_lower == '/server':
             return await self.query_mc_servers()
         
         # 未知命令，返回帮助提示
         if content:  # 如果用户确实发了内容
-            return f"未知命令: {content}\n发送「帮助」查看可用命令"
+            return f"未知命令: {content}\n发送 /help 查看可用命令"
         
         return None
     
@@ -143,10 +143,10 @@ class vBotClient(botpy.Client):
         return """🤖 vBot 使用帮助
 
 【Minecraft服务器查询】
-📌 服务器/server - 查询服务器在线状态
+    📌 /server - 查询服务器在线状态
 
 【其他】
-📌 帮助/help - 显示本帮助信息
+    📌 /help - 显示本帮助信息
 """
     
     async def query_mc_servers(self) -> str:
