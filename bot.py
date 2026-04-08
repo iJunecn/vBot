@@ -73,7 +73,7 @@ class vBotClient(botpy.Client):
         response = await self.process_command(content, message)
         if response:
             mention_name = getattr(getattr(message, "member", None), "nick", None) or ""
-            mention_prefix = f"@{mention_name}\n" if mention_name else ""
+            mention_prefix = f"@{mention_name}\n\n" if mention_name else ""
             await message._api.post_group_message(
                 group_openid=message.group_openid,
                 msg_type=0,
@@ -122,6 +122,7 @@ class vBotClient(botpy.Client):
         支持的命令:
         - /help: 显示帮助信息
         - /server: 查询Minecraft服务器状态
+        - /about: 介绍本群Bot
         """
         content_lower = content.lower()
         
@@ -132,6 +133,10 @@ class vBotClient(botpy.Client):
         # 服务器状态查询
         if content_lower == '/server':
             return await self.query_mc_servers()
+
+        # 机器人介绍
+        if content_lower == '/about':
+            return self.get_about_text()
         
         # 未知命令，返回帮助提示
         if content:  # 如果用户确实发了内容
@@ -148,7 +153,14 @@ class vBotClient(botpy.Client):
 
 【其他】
     📌 /help - 显示本帮助信息
+    📌 /about - 查看机器人介绍
 """
+
+    def get_about_text(self) -> str:
+        """获取机器人介绍文本"""
+        return """你好，我是本群专属群Bot贝壳，欢迎来到 USTB Servers ！
+USTB Servers 是北科 Minecraft 交流群，是 Minecraft 高校联盟在北京的核心高校组织，在校内以“元宇宙体素工作坊”形式作为社团部门存在，欢迎大家加入！
+更多内容详见群内置顶公告，感谢配合！"""
     
     async def query_mc_servers(self) -> str:
         """查询所有Minecraft服务器状态"""

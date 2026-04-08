@@ -57,6 +57,7 @@ python bot.py
 |------|------|
 | /help | 显示帮助信息 |
 | /server | 查询Minecraft服务器状态 |
+| /about | 查看机器人介绍 |
 
 ## 目录结构
 
