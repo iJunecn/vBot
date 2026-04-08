@@ -73,7 +73,7 @@ class vBotClient(botpy.Client):
         response = await self.process_command(content, message)
         if response:
             mention_name = getattr(getattr(message, "member", None), "nick", None) or ""
-            mention_prefix = f"@{mention_name}\n\n" if mention_name else ""
+            mention_prefix = f"@{mention_name}\n" if mention_name else ""
             await message._api.post_group_message(
                 group_openid=message.group_openid,
                 msg_type=0,
@@ -146,7 +146,7 @@ class vBotClient(botpy.Client):
     
     def get_help_text(self) -> str:
         """获取帮助文本"""
-        return """🤖 vBot 使用帮助
+        return """🤖 贝壳使用帮助
 
 【Minecraft服务器查询】
     📌 /server - 查询服务器在线状态
