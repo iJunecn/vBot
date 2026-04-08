@@ -5,6 +5,7 @@ GUGUBot 传声筒HTTP服务器模块
 """
 import asyncio
 import json
+from collections.abc import Coroutine
 from typing import Callable, Optional
 from aiohttp import web
 
@@ -22,8 +23,8 @@ class GugubotServer:
         self.site: Optional[web.TCPSite] = None
         
         # 消息回调函数
-        self.on_mc_message: Optional[Callable[[str, str], asyncio.Coroutine]] = None
-        self.on_qq_message: Optional[Callable[[str], asyncio.Coroutine]] = None
+        self.on_mc_message: Optional[Callable[[str, str], Coroutine]] = None
+        self.on_qq_message: Optional[Callable[[str], Coroutine]] = None
         
         # 设置路由
         self.app.router.add_post('/message', self.handle_message)
@@ -114,10 +115,10 @@ class GugubotServer:
             await self.runner.cleanup()
             print("[GugubotServer] HTTP服务器已停止")
     
-    def set_mc_message_handler(self, handler: Callable[[str, str], asyncio.Coroutine]):
+    def set_mc_message_handler(self, handler: Callable[[str, str], Coroutine]):
         """设置MC消息处理器"""
         self.on_mc_message = handler
     
-    def set_qq_message_handler(self, handler: Callable[[str], asyncio.Coroutine]):
+    def set_qq_message_handler(self, handler: Callable[[str], Coroutine]):
         """设置QQ消息处理器"""
         self.on_qq_message = handler
