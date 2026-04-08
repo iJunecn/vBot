@@ -72,10 +72,10 @@ class MinecraftServerQuery:
         Returns:
             格式化后的状态文本
         """
-        name = display_name or server_address
+        name = display_name or "Minecraft服务器"
         
         if status is None:
-            return f"❌ {name} ({server_address})\n  状态: 查询失败或服务器离线"
+            return f"❌ {name}\n  状态: 查询失败或服务器离线"
         
         try:
             # 检查是否是成功的响应
@@ -83,13 +83,13 @@ class MinecraftServerQuery:
                 code = status.get('code', -1)
                 if code != 200:
                     msg = status.get('msg', '未知错误')
-                    return f"❌ {name} ({server_address})\n  状态: {msg}"
+                    return f"❌ {name}\n  状态: {msg}"
                 
                 data = status.get('data', {})
                 online = data.get('online', False)
                 
                 if not online:
-                    return f"❌ {name} ({server_address})\n  状态: 服务器离线"
+                    return f"❌ {name}\n  状态: 服务器离线"
                 
                 # 服务器在线，获取详细信息
                 version = data.get('version', '未知版本')
@@ -103,7 +103,7 @@ class MinecraftServerQuery:
                 if isinstance(player_list, list) and len(player_list) > 0:
                     player_names = [p.get('name', '未知') for p in player_list if isinstance(p, dict)]
                 
-                status_text = f"✅ {name} ({server_address})\n"
+                status_text = f"✅ {name}\n"
                 status_text += f"  版本: {version}\n"
                 status_text += f"  在线人数: {players_online}/{players_max}"
                 
@@ -117,7 +117,7 @@ class MinecraftServerQuery:
                 
                 return status_text
             else:
-                return f"❌ {name} ({server_address})\n  状态: 返回数据格式异常"
+                return f"❌ {name}\n  状态: 返回数据格式异常"
                 
         except Exception as e:
-            return f"❌ {name} ({server_address})\n  状态: 解析数据失败 - {str(e)}"
+            return f"❌ {name}\n  状态: 解析数据失败 - {str(e)}"

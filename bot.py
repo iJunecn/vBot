@@ -125,10 +125,6 @@ class vBotClient(botpy.Client):
 
 【其他】
 📌 帮助/help - 显示本帮助信息
-
-服务器列表:
-• mc.ustb.world - USTB主服务器
-• mod.ustb.world - USTB模组服务器"""
     
     async def query_mc_servers(self) -> str:
         """查询所有Minecraft服务器状态"""
