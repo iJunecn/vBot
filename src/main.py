@@ -11,14 +11,15 @@ from config import get_appid, get_secret, load_env
 
 
 def main() -> None:
-    # 先加载 .env，再读取 APPID/SECRET
+    # 仅用于加载 USTB_API_BASE / MCSEARCH_BASE 等可调环境变量；
+    # 机器人凭据来自 src/secrets.py，不再依赖 .env。
     load_env()
 
     appid = get_appid()
     secret = get_secret()
     if not appid or not secret:
-        print("错误: 缺少 APPID 或 SECRET 环境变量", file=sys.stderr)
-        print("请先复制 .env.example 为 .env 并填写配置", file=sys.stderr)
+        print("错误: 无法获取 APPID 或 SECRET", file=sys.stderr)
+        print("请检查 src/secrets.py 中的混淆常量是否完整", file=sys.stderr)
         sys.exit(1)
 
     intents = botpy.Intents(

@@ -1,3 +1,9 @@
+# vBot docker-compose 示例
+# 凭据已硬编码在 src/secrets.py 中，不需要再挂载 .env。
+# 如需覆盖 vUSTB / MCSearch 的 Base URL，可通过 environment 段设置：
+#   environment:
+#     USTB_API_BASE: https://your-mirror.example.com
+
 services:
   vbot:
     build:
@@ -6,8 +12,6 @@ services:
     image: vbot:latest
     container_name: vbot
     restart: unless-stopped
-    env_file:
-      - .env
 
     networks:
       - vbot-net
