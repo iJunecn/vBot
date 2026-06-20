@@ -24,7 +24,6 @@ COPY src /app/src
 
 # 复制静态配置文件——每个 COPY 一行，避免多源 COPY 在某些 BuildKit 组合下产生路径歧义
 COPY config.yaml /app/config.yaml
-COPY .env.example /app/.env.example
 
 # 运行时以非 root 用户运行
 RUN useradd --create-home --shell /bin/bash vbot \
