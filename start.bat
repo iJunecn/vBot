@@ -37,6 +37,8 @@ echo   正在启动 vBot...
 echo ======================================
 echo.
 
-python bot.py
+cd /d "%~dp0"
+set PYTHONPATH=%~dp0src
+python -m main
 
 pause

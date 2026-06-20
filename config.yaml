@@ -1,8 +1,3 @@
-# Minecraft服务器列表
-# 机器人账号和密钥请放到 .env 中
-
-minecraft_servers:
-  - name: "mc.ustb.world"
-    display_name: "USTB 主服务器"
-  - name: "mod.ustb.world"
-    display_name: "USTB 模组服务器"
+# vBot 静态配置文件
+# 当前所有数据均通过 vUSTB / MCSearch 公开 API 实时拉取，
+# 因此这里仅保留占位；如需新增自定义开关可在此扩展。
