@@ -10,10 +10,10 @@ from services.http_client import HttpClient
 
 # status_class -> 视觉图标
 _STATUS_ICON = {
-    "running": "🟢",
-    "reserved": "🟡",
-    "idle": "⚪",
-    "paused": "🔴",
+    "running": "🟩",
+    "reserved": "🟨",
+    "idle": "⬜",
+    "paused": "🟥",
 }
 
 
@@ -29,14 +29,14 @@ class PrinterService:
 
     @staticmethod
     def _humanize(printer: Dict[str, Any]) -> str:
-        icon = _STATUS_ICON.get(printer.get("status_class", ""), "❔")
+        icon = _STATUS_ICON.get(printer.get("status_class", ""), "⬜")
         name = printer.get("name") or "未知打印机"
         location = printer.get("location") or "位置未知"
         model = printer.get("model") or "型号未知"
         status = printer.get("status") or "未知"
         booking_id = printer.get("current_booking_id")
         suffix = f"  (预约 #{booking_id})" if booking_id else ""
-        return f"{icon} {name} · {status}{suffix}\n   📍 {location} · 🛠 {model}"
+        return f"{icon} {name} · {status}{suffix}\n   位置：{location} · 型号：{model}"
 
     @classmethod
     def format_list(cls, printers: List[Dict[str, Any]]) -> str:
@@ -52,10 +52,10 @@ class PrinterService:
                 counts[cls_key] += 1
 
         header = (
-            "🖨️ 3D 打印机状态\n"
-            "=" * 27
+            "🟦 3D 打印机状态\n"
+            + "=" * 27
             + "\n"
-            f"运行中 {counts['running']} · 已预约 {counts['reserved']} · "
+            + f"运行中 {counts['running']} · 已预约 {counts['reserved']} · "
             f"空闲 {counts['idle']} · 暂停 {counts['paused']}"
         )
         body = [cls._humanize(p) for p in printers]

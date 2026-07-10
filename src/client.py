@@ -22,19 +22,19 @@ _log = logging.get_logger()
 CommandHandler = Callable[[str], Awaitable[str]]
 
 
-HELP_TEXT = """🤖 贝壳使用帮助
+HELP_TEXT = """🟦 贝壳使用帮助
 
 【Minecraft 服务器】
-    📌 /server - 查看 vUSTB 公开服务器列表（含 IP、版本、介绍、在线人数）
-    📌 /printers - 查看 3D 打印机实时状态
+    🟦 /server - 查看 vUSTB 公开服务器列表（含 IP、版本、介绍、在线人数）
+    🟦 /printers - 查看 3D 打印机实时状态
 
 【Minecraft 资料查询】
-    📌 /wiki <词条> - 查询中文 Minecraft Wiki 词条摘要
-    📌 /mod <关键词> - 聚合搜索 Mod（Modrinth / BBSMC / CurseForge 等）
+    🟦 /wiki <词条> - 查询中文 Minecraft Wiki 词条摘要
+    🟦 /mod <关键词> - 聚合搜索 Mod（Modrinth / BBSMC / CurseForge 等）
 
 【其他】
-    📌 /help - 显示本帮助信息
-    📌 /about - 查看机器人介绍
+    🟦 /help - 显示本帮助信息
+    🟦 /about - 查看机器人介绍
 """
 
 
@@ -127,7 +127,7 @@ class VBotClient(botpy.Client):
                 return await self._cmd_mod(rest)
         except Exception as exc:  # 兜底，避免单条命令的异常让客户端崩溃
             _log.exception(f"[vBot] 命令 {command} 执行失败: {exc}")
-            return f"❌ 命令执行出错：{exc}"
+            return f"🟥 命令执行出错：{exc}"
 
         return f"未知命令: {command}\n发送 /help 查看可用命令"
 

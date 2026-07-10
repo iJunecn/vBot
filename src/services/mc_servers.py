@@ -10,8 +10,8 @@ from services.http_client import HttpClient
 
 # 状态展示文案
 _STATUS_DISPLAY = {
-    "online": ("✅ 在线", "ON"),
-    "offline": ("❌ 离线", "OFF"),
+    "online": ("🟩 在线", "ON"),
+    "offline": ("🟥 离线", "OFF"),
 }
 
 
@@ -35,7 +35,7 @@ class MinecraftServerService:
         theme = server.get("theme") or ""
 
         raw_status = (server.get("server_status") or "").lower()
-        status_label, _ = _STATUS_DISPLAY.get(raw_status, ("⚠️ 未知", "?"))
+        status_label, _ = _STATUS_DISPLAY.get(raw_status, ("⬜ 未知", "?"))
 
         online = server.get("players_online")
         max_online = server.get("players_max")
@@ -61,6 +61,6 @@ class MinecraftServerService:
         if not servers:
             return "暂无公开的 Minecraft 服务器"
 
-        header = ["🎮 Minecraft 服务器列表", "=" * 27]
+        header = ["🟦 Minecraft 服务器列表", "=" * 27]
         body = [cls.format_for_chat(s) for s in servers]
         return "\n\n".join(header + body)

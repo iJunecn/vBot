@@ -31,13 +31,13 @@ class WikiService:
     def format_for_chat(title: str, page: Optional[Dict[str, Any]]) -> str:
         """把词条摘要格式化成可读文本。"""
         if not page:
-            return f"📚 找不到 Wiki 词条「{title}」"
+            return f"🟦 找不到 Wiki 词条「{title}」"
 
         real_title = page.get("title") or title
         extract = (page.get("extract") or "").strip()
         url = page.get("url") or ""
 
-        text = f"📚 Wiki · {real_title}\n{extract}"
+        text = f"🟦 Wiki · {real_title}\n{extract}"
         if url:
             text += f"\n🔗 {url}"
         return text

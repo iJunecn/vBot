@@ -64,11 +64,11 @@ class ModSearchService:
         """把搜索结果格式化成可读文本（默认取前 5 条）。"""
         results: List[Dict[str, Any]] = (payload or {}).get("results") or []
         if not results:
-            return f"🔍 没有找到与「{query}」相关的 Mod"
+            return f"🟦 没有找到与「{query}」相关的 Mod"
 
         source = (payload or {}).get("source") or "all"
         header = (
-            f"🔍 Mod 搜索 · {query}  (source={source}, "
+            f"🟦 Mod 搜索 · {query}  (source={source}, "
             f"命中 {len(results)} 条，显示前 {min(limit, len(results))} 条)"
         )
         body = [cls._format_item(item, idx) for idx, item in enumerate(results[:limit], start=1)]
