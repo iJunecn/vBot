@@ -10,6 +10,7 @@ from botpy import logging
 from botpy.message import C2CMessage, GroupMessage, Message
 
 from services.ask import AskService
+from services.book import BookService
 from services.mod_search import ModSearchService
 from services.mc_servers import MinecraftServerService
 from services.printers import PrinterService
@@ -33,6 +34,7 @@ HELP_TEXT = """🟦 贝壳使用帮助
     🟦 /wiki <词条> - 查询中文 Minecraft Wiki 词条摘要
     🟦 /mod <关键词> - 聚合搜索 Mod（Modrinth / BBSMC / CurseForge 等）
     🟦 /ask <问题> - 向像素北科知识库提问
+    🟦 /book <问题> - 查询在售二手书
 
 【其他】
     🟦 /help - 显示本帮助信息
@@ -57,6 +59,7 @@ class VBotClient(botpy.Client):
         self.wiki = WikiService()
         self.mod_search = ModSearchService()
         self.ask_service = AskService()
+        self.book_service = BookService()
 
     async def on_ready(self) -> None:
         _log.info(f"🤖 机器人 [{self.robot.name}] 已上线!")
@@ -130,6 +133,8 @@ class VBotClient(botpy.Client):
                 return await self._cmd_mod(rest)
             if command == "/ask":
                 return await self._cmd_ask(rest)
+            if command == "/book":
+                return await self._cmd_book(rest)
         except Exception as exc:  # 兜底，避免单条命令的异常让客户端崩溃
             _log.exception(f"[vBot] 命令 {command} 执行失败: {exc}")
             return f"🟥 命令执行出错：{exc}"
@@ -162,3 +167,8 @@ class VBotClient(botpy.Client):
         if not question:
             return "用法：/ask <问题>\n例如：/ask 像素北科跟服务器有什么关系？"
         return await self.ask_service.ask(question)
+
+    async def _cmd_book(self, question: str) -> str:
+        if not question:
+            return "用法：/book <问题>\n例如：/book 有无在售的线性代数书？"
+        return await self.book_service.ask(question)
