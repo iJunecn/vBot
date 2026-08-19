@@ -1,5 +1,5 @@
-# vBot 镜像：基于官方 python:3.11-slim，体积小、依赖少
-FROM python:3.11-slim AS runtime
+# vBot 镜像：使用 Docker Hub 代理，避免部署机直连 Docker Hub 超时。
+FROM docker.m.daocloud.io/docker.io/library/python:3.11-slim AS runtime
 
 # 防止 Python 写入 .pyc、强制 stdout 不缓冲
 ENV PYTHONDONTWRITEBYTECODE=1 \
