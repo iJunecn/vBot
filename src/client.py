@@ -42,10 +42,13 @@ HELP_TEXT = """🟦 贝壳使用帮助
 """
 
 
-ABOUT_TEXT = """你好，我是本群专属群 Bot 贝壳，欢迎来到 USTB Servers！
-USTB Servers 是北科 Minecraft 交流群，是 Minecraft 高校联盟在北京的核心高校组织，
-在校内以「元宇宙体素工作坊」形式作为社团部门存在，欢迎大家加入！
-更多内容详见群内置顶公告，感谢配合！"""
+ABOUT_TEXT = """您好，我是贝壳，是由北京科技大学天码智能社元宇宙体素工作坊开发的 QQ 智能机器人，适配于「像素北科」平台一同运营使用。
+
+我具有查询服务器状态、查 Minecraft Wiki 及 Mods、查知识库、查在售书单等诸多功能，欢迎使用体验！
+
+USTB MC Servers 是北科 Minecraft 交流群，是 Minecraft 高校联盟在北京的核心高校组织，在校内以「元宇宙体素工作坊」形式作为社团部门存在，欢迎大家加入！
+
+更多内容详见「像素北科官网」(https://www.ustb.world/ )，感谢配合！"""
 
 
 class VBotClient(botpy.Client):
