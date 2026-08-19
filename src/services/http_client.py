@@ -55,3 +55,23 @@ class HttpClient:
         # 三次都失败，抛出最后一次的异常
         assert last_exc is not None
         raise last_exc
+
+    async def post_json(
+        self,
+        path: str,
+        json: Any,
+        headers: Optional[Dict[str, str]] = None,
+    ) -> Any:
+        """发起 POST 请求并解析 JSON，失败时按 GET 相同策略重试。"""
+        last_exc: Optional[Exception] = None
+        for attempt in range(self._max_retries + 1):
+            try:
+                response = await self._client.post(path, json=json, headers=headers)
+                response.raise_for_status()
+                return response.json()
+            except (httpx.HTTPError, ValueError) as exc:
+                last_exc = exc
+                if attempt < self._max_retries:
+                    await asyncio.sleep(0.5 * (attempt + 1))
+        assert last_exc is not None
+        raise last_exc

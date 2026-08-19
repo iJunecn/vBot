@@ -10,6 +10,7 @@
 | `/printers`（含别名 `/printer`） | `GET https://www.ustb.world/api/print/printers/statuses` | 查看 3D 打印机实时状态，含名称、位置、型号、运行/已预约/空闲/暂停 |
 | `/wiki <词条>` | `GET https://search.tecostudio.cn/api/v1/wiki/page` | 拉取中文 Minecraft Wiki 词条摘要（≤300 字）+ 原文链接 |
 | `/mod <关键词>` | `GET https://search.tecostudio.cn/api/v1/mod/search` | 聚合搜索 Modrinth / BBSMC / CurseForge 等来源的 Mod |
+| `/ask <问题>` | `POST https://www.ustb.world/api/ask/text` | 向像素北科知识库提问，仅返回回答正文 |
 | `/help` / `/about` | — | 内置帮助与机器人自我介绍 |
 
 ## 项目结构
@@ -28,7 +29,8 @@ vBot/
 │       ├── mc_servers.py         # vUSTB MC 服务器 API
 │       ├── printers.py           # vUSTB 打印机 API
 │       ├── wiki.py               # MCSearch Wiki 词条 API
-│       └── mod_search.py         # MCSearch Mod 搜索 API
+│       ├── mod_search.py         # MCSearch Mod 搜索 API
+│       └── ask.py                # 像素北科知识库问答 API
 ├── config.yaml                   # 静态配置（占位，全部数据走 API 实时拉取）
 ├── Dockerfile                    # vBot 镜像构建
 ├── docker-compose.yml            # 一键启动
